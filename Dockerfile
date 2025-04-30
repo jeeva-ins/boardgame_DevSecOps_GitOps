@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/java-base-debian12
+FROM gcr.io/distroless/java17-debian12
       
 EXPOSE 8080
  
