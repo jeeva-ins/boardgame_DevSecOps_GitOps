@@ -46,6 +46,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-artifact
+          path: staging
       - name: Display structure of downloaded files
         run: ls -R
       -
