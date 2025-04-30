@@ -4,9 +4,8 @@
 name: Maven Build, Test and Package
 
 on: 
-  release:
-    types: [created]
-
+  push:
+    
 jobs:
   build:
 
