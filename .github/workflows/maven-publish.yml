@@ -65,7 +65,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-            images: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.repository }}
+            images: ${{ vars.DOCKERHUB_USERNAME }}/boardgame
             tags: |
               type=sha,format=long
               type=ref,event=branch
