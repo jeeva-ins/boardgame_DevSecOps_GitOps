@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/java-base-debian12
+FROM adoptopenjdk/openjdk11:alpine
       
 EXPOSE 8080
  
