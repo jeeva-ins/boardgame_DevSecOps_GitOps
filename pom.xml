@@ -116,7 +116,7 @@
 		</plugins>
 	</build>
 
-
+	<!--
 	 <distributionManagement>
         <repository>
             <id>maven-releases</id>
@@ -127,5 +127,5 @@
             <url>http://20.235.240.252:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
+		--!>
 </project>
