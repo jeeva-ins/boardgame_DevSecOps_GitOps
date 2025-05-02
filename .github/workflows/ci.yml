@@ -145,8 +145,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-#        with:
-#         token: ${{ secrets.TOKEN }}
+        with:
+         token: ${{ secrets.GIT_TOKEN }}
       
       - name: Setup Git config
         run: |
@@ -159,17 +159,11 @@ jobs:
           #GITHUB_REPOSITORY: ${{ github.repository }}
           #REGISTRY: ghcr.io
           IMAGE_NAME: ${{ vars.DOCKERHUB_USERNAME }}/boardgame
-        run: |
-          # Define the new image with tag
-          #NEW_IMAGE="${REGISTRY}/${GITHUB_REPOSITORY}:${IMAGE_TAG}"
-          
+        run: |                
           NEW_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
           
-          
-          # Update the deployment file directly
           sed -i "s+image: ${REGISTRY}/.*+image: ${NEW_IMAGE}+g" deployment.yml
           
-          # Verify the change
           echo "Updated deployment to use image: ${NEW_IMAGE}"
           grep -A 1 "image:" deployment.yml
       
