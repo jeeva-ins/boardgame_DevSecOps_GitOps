@@ -21,25 +21,10 @@ FROM alpine:latest
 #ENV PATH="${JAVA_HOME}/bin:${PATH}"
 WORKDIR /app
 ENV JAVA=/app/optimized-jdk-17/bin/java
+
 # copy JRE from the base image
 COPY --from=jre-builder /optimized-jdk-17/  $JAVA
-RUN ls -ltr /app
 
-# Add app user
-ARG APPLICATION_USER=spring
-
-# Create a user to run the application, don't run as root
-RUN addgroup --system $APPLICATION_USER &&  adduser --system $APPLICATION_USER --ingroup $APPLICATION_USER
-
-# Create the application directory
-RUN chown -R $APPLICATION_USER /app
-
-COPY --chown=$APPLICATION_USER:$APPLICATION_USER staging/*.jar /app/app.jar
-
-USER $APPLICATION_USER
-
+COPY  staging/*.jar /app/app.jar
 EXPOSE 8080
-
-ENV PATH="${JAVA}/bin:${PATH}"
-
 CMD [ "/app/optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
