@@ -167,7 +167,7 @@ jobs:
           
           
           # Update the deployment file directly
-          sed -i "s|image: ${REGISTRY}/.*|image: ${NEW_IMAGE}|g" deployment.yml
+          sed -i "s+image: ${REGISTRY}/.*+image: ${NEW_IMAGE}+g" deployment.yml
           
           # Verify the change
           echo "Updated deployment to use image: ${NEW_IMAGE}"
