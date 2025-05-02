@@ -23,7 +23,7 @@ WORKDIR /app
 ENV JAVA_HOME=/app/optimized-jdk-17/bin/java
 # copy JRE from the base image
 COPY --from=jre-builder /optimized-jdk-17/  $JAVA_HOME
-RUN ls /app
+RUN ls -ltr /app
 
 # Add app user
 ARG APPLICATION_USER=spring
@@ -35,8 +35,6 @@ RUN addgroup --system $APPLICATION_USER &&  adduser --system $APPLICATION_USER -
 RUN chown -R $APPLICATION_USER /app
 
 COPY --chown=$APPLICATION_USER:$APPLICATION_USER staging/*.jar /app/app.jar
-
-WORKDIR /app
 
 USER $APPLICATION_USER
 
