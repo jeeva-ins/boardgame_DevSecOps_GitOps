@@ -24,5 +24,5 @@ WORKDIR /app
 # copy JRE from the base image
 COPY --from=jre-builder /optimized-jdk-17/  /app/optimized-jdk-17/
 EXPOSE 8080
-CMD [ "/app/optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
+ENTRYPOINT [ "/app/optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
 COPY  staging/*.jar /app/app.jar
