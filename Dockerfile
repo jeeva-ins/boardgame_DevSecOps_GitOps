@@ -21,7 +21,7 @@ ENV JAVA_HOME=/opt/jdk/jdk-17
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 # copy JRE from the base image
-COPY --from=jre-builder /optimized-jdk-17 $JAVA_HOME
+COPY --from=jre-builder /optimized-jdk-17/*  $JAVA_HOME
 
 # Add app user
 ARG APPLICATION_USER=spring
