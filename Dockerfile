@@ -42,4 +42,4 @@ EXPOSE 8080
 
 ENV PATH="${JAVA}/bin:${PATH}"
 
-CMD [ "$JAVA", "-jar", "/app/app.jar" ]
+CMD [ "/app/optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
