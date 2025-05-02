@@ -17,12 +17,12 @@ RUN $JAVA_HOME/bin/jlink \
 
 # Second stage, Use the custom JRE and build the app image
 FROM alpine:latest
-#ENV JAVA_HOME=/opt/jdk/jdk-17
-#ENV PATH="${JAVA_HOME}/bin:${PATH}"
+ENV JAVA_HOME=/opt/jdk/jdk-17
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
 WORKDIR /app
 
 # copy JRE from the base image
-COPY --from=jre-builder /optimized-jdk-17/  /app/optimized-jdk-17/
+COPY --from=jre-builder /optimized-jdk-17/  ${JAVA_HOME}
 EXPOSE 8080
-ENTRYPOINT [ "/app/optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
+ENTRYPOINT [ "${JAVA_HOME}", "-jar", "/app/app.jar" ]
 COPY  staging/*.jar /app/app.jar
