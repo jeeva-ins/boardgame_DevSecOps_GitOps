@@ -17,11 +17,12 @@ RUN $JAVA_HOME/bin/jlink \
 
 # Second stage, Use the custom JRE and build the app image
 FROM alpine:latest
-ENV JAVA_HOME=/opt/jdk/jdk-17
-ENV PATH="${JAVA_HOME}/bin:${PATH}"
-
+#ENV JAVA_HOME=/opt/jdk/jdk-17
+#ENV PATH="${JAVA_HOME}/bin:${PATH}"
+WORKDIR /app
 # copy JRE from the base image
-COPY --from=jre-builder /optimized-jdk-17/*  $JAVA_HOME
+COPY --from=jre-builder /optimized-jdk-17/  /app
+RUN ls /app
 
 # Add app user
 ARG APPLICATION_USER=spring
@@ -30,7 +31,7 @@ ARG APPLICATION_USER=spring
 RUN addgroup --system $APPLICATION_USER &&  adduser --system $APPLICATION_USER --ingroup $APPLICATION_USER
 
 # Create the application directory
-RUN mkdir /app && chown -R $APPLICATION_USER /app
+RUN chown -R $APPLICATION_USER /app
 
 COPY --chown=$APPLICATION_USER:$APPLICATION_USER staging/*.jar /app/app.jar
 
@@ -40,4 +41,4 @@ USER $APPLICATION_USER
 
 EXPOSE 8080
 
-ENTRYPOINT [ "java", "-jar", "/app/app.jar" ]
+ENTRYPOINT [ "optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
