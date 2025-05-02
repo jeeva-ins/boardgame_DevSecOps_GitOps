@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: 10551jeeva/boardgame:5
+          image: ${REGISTRY}/
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
