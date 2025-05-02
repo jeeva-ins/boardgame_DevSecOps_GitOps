@@ -16,7 +16,7 @@ RUN $JAVA_HOME/bin/jlink \
          --output /optimized-jdk-17
 
 # Second stage, Use the custom JRE and build the app image
-FROM alpine:latest
+FROM gcr.io/distroless/base-debian12
 ENV JAVA_HOME=/opt/jdk/jdk-17
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 WORKDIR /app
