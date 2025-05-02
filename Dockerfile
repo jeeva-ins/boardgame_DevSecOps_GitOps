@@ -40,4 +40,6 @@ USER $APPLICATION_USER
 
 EXPOSE 8080
 
-ENTRYPOINT [ "$JAVA", "-jar", "/app/app.jar" ]
+ENV PATH="${JAVA}/bin:${PATH}"
+
+ENTRYPOINT [ "JAVA", "-jar", "/app/app.jar" ]
