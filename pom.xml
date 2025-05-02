@@ -21,7 +21,8 @@
     		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
     		<sonar.language>java</sonar.language>
-		
+		<sonar.organization>jeeva-ins</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencies>
@@ -127,8 +128,6 @@
             <url>http://20.235.240.252:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>  -->
-	<properties>
-  <sonar.organization>jeeva-ins</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-</properties>
+	    
+    
 </project>
