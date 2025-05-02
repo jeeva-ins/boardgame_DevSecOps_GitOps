@@ -165,11 +165,8 @@ jobs:
           sed -i "s+image: ${REGISTRY}/.*+image: ${NEW_IMAGE}+g" deployment.yml
           
           echo "Updated deployment to use image: ${NEW_IMAGE}"
-          grep -A 1 "image:" deployment.yml
-      
-      - name: Commit and push changes
-        run: |
+          grep -A 1 "image:" deployment.yml          
           git add deployment.yml
           git commit -m "Update Kubernetes deployment with new image tag: ${{ needs.docker.set_output.output }} [skip ci]" || echo "No changes to commit"
-          git push 
+          git push origin main 
       
