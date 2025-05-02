@@ -20,8 +20,9 @@ FROM alpine:latest
 #ENV JAVA_HOME=/opt/jdk/jdk-17
 #ENV PATH="${JAVA_HOME}/bin:${PATH}"
 WORKDIR /app
+ENV JAVA_HOME=/app/optimized-jdk-17/bin/java
 # copy JRE from the base image
-COPY --from=jre-builder /optimized-jdk-17/  /app
+COPY --from=jre-builder /optimized-jdk-17/  $JAVA_HOME
 RUN ls /app
 
 # Add app user
@@ -41,4 +42,4 @@ USER $APPLICATION_USER
 
 EXPOSE 8080
 
-ENTRYPOINT [ "optimized-jdk-17/bin/java", "-jar", "/app/app.jar" ]
+ENTRYPOINT [ "$JAVA_HOME", "-jar", "/app/app.jar" ]
