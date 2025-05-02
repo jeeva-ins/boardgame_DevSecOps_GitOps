@@ -42,4 +42,4 @@ EXPOSE 8080
 
 ENV PATH="${JAVA}/bin:${PATH}"
 
-ENTRYPOINT [ "$JAVA", "-jar", "/app/app.jar" ]
+CMD [ "$JAVA", "-jar", "/app/app.jar" ]
