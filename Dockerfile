@@ -20,10 +20,9 @@ FROM alpine:latest
 #ENV JAVA_HOME=/opt/jdk/jdk-17
 #ENV PATH="${JAVA_HOME}/bin:${PATH}"
 WORKDIR /app
-ENV JAVA=/app/optimized-jdk-17/bin/java
 
 # copy JRE from the base image
-COPY --from=jre-builder /optimized-jdk-17/  $JAVA
+COPY --from=jre-builder /optimized-jdk-17/  /optimized-jdk-17/
 
 COPY  staging/*.jar /app/app.jar
 EXPOSE 8080
