@@ -123,7 +123,7 @@ jobs:
             tags: |
               type=sha,format=long
               type=ref,event=branch
-              latest
+        
       -
         name: Build and push
         uses: docker/build-push-action@v6
@@ -164,12 +164,12 @@ jobs:
         run: |                
           NEW_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
           
-          sed -i "s+image:.*+image: ${NEW_IMAGE}+g" deployment.yml      
+          sed -i "s+image:.*+image: ${NEW_IMAGE}+g" helm/boardgame/values.yaml
           echo "Updated deployment to use image: ${NEW_IMAGE}"
-          grep -A 1 "image:" deployment.yml          
+          grep -A 1 "image:" helm/boardgame/values.yaml
       - name: commit and push 
         run: |
-          git add deployment.yml
-          git commit -m "Update Kubernetes deployment with new image tag:${{ needs.docker.outputs.output1}} [skip ci]" || echo "No changes to commit"
+          git add helm/boardgame/values.yaml
+          git commit -m "Update Kubernetes deployment value with new image tag:${{ needs.docker.outputs.output1}} [skip ci]" || echo "No changes to commit"
           git push origin main 
       
