@@ -1,4 +1,4 @@
 replicaCount: 3 
 
 
-image: boardgame
+image: jeevains/boardgame:sha-f4fb42fe6c8550645db605bec917161f79b40735
